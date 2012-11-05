@@ -36,7 +36,7 @@ public class spellcheck {
             return;
         }
         else
-            vowelSearch(inputWord, 0);
+            ;//vowelSearch(inputWord, 0);
 
         if (index < inputWord.length() && inputWord.charAt(index - 1) == inputWord.charAt(index)) {
             int count = 0;
@@ -58,6 +58,10 @@ public class spellcheck {
         else if (index < inputWord.length()) {
             checkWord(inputWord, index + 1);
         }
+        
+        vowelSearch(inputWord, 0);
+        if(printOne)
+            return;
         return;
 
     }
