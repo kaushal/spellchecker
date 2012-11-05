@@ -15,7 +15,14 @@ public class spellcheck {
             Scanner sc = new Scanner(System.in);
             String rawInputWord = sc.nextLine();
             rawInputWord = rawInputWord.toLowerCase();
-
+            if(dict.search(rawInputWord)){
+                printOnce(rawInputWord);
+                continue;
+            }
+            rawInputWord = rawInputWord.replaceAll("[aeiou]", "a");
+            //System.out.println(rawInputWord);
+            
+            
             checkWord(rawInputWord, 1);
             if (!printOne)
                 System.out.println("NO SUGGESTION");
@@ -47,21 +54,27 @@ public class spellcheck {
                     count++;
             }
             checkWord(inputWord.substring(0, index) + inputWord.substring(index + count), index);
+            if(printOne)
+                return;
 
             if (index - 1 + count < inputWord.length()) {
                 checkWord(inputWord.substring(0, index - 1) + inputWord.substring(index), index);
+                if(printOne)
+                    return;
             }
             if (index + count < inputWord.length()) {
                 checkWord(inputWord, index + count);
+                if(printOne)
+                    return;
             }
         }
         else if (index < inputWord.length()) {
             checkWord(inputWord, index + 1);
+            if(printOne)
+                return;
         }
         
         vowelSearch(inputWord, 0);
-        if(printOne)
-            return;
         return;
 
     }
@@ -87,6 +100,8 @@ public class spellcheck {
                 else
                     word = word.substring(0, count) + vowels.charAt(i) + word.substring(count + 1, word.length());
                 vowelSearch(word, count + 1);
+                if(printOne)
+                    return;
             }
         }
         else
