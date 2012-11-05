@@ -23,10 +23,12 @@ public class spellcheck {
         }
     }
 
+    //This is only ever used by generateWords.java
     public spellcheck() {
         populateDict();
     }
-
+    
+    //This method checks the word for all possible corrections according to the problem definition.
     public static void checkWord(String inputWord, int index) {
         inputWord = inputWord.toLowerCase();
         if (dict.search(inputWord)) {
@@ -44,17 +46,12 @@ public class spellcheck {
                 else
                     count++;
             }
-            // System.out.println(inputWord.substring(0, index) +
-            // inputWord.substring(index + count));
             checkWord(inputWord.substring(0, index) + inputWord.substring(index + count), index);
 
             if (index - 1 + count < inputWord.length()) {
-                // System.out.println(inputWord.substring(0, index - 1) +
-                // inputWord.substring(index));
                 checkWord(inputWord.substring(0, index - 1) + inputWord.substring(index), index);
             }
             if (index + count < inputWord.length()) {
-                // System.out.println(inputWord);
                 checkWord(inputWord, index + count);
             }
         }
@@ -64,12 +61,13 @@ public class spellcheck {
         return;
 
     }
-
+    
+    //This method checks every vowel combination in the given input word and stops once a match is found. 
     public static void vowelSearch(String word, int count) {
-        // System.out.println(word);
-        String vowels = "eaoiu";
+        String vowels = "eaoiu"; //This order was chosen based on the frequency of occurrence of vowels in the english language
         if (dict.search(word)) {
             printOnce(word);
+            return;
         }
         if (count >= word.length())
             return;
@@ -102,8 +100,7 @@ public class spellcheck {
 
     public static void populateDict() {
         dict = new prefixTree();
-        try {// Putting all of the names in /usr/share/dict/words into a prefix
-             // tree
+        try {// Putting all of the names in /usr/share/dict/words into a prefixtree
             Scanner sc = new Scanner(new File("/usr/share/dict/words"));
             while (sc.hasNext()) {
                 String word = sc.next();
