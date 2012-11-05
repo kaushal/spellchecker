@@ -1,3 +1,5 @@
+Kaushal Parikh
+Spellcheck Efficiency Analysis
 readme.txt
 
 Worst case run time analysis:
