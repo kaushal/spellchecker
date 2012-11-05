@@ -2,6 +2,17 @@ Kaushal Parikh
 Spellcheck Efficiency Analysis
 readme.txt
 
+Instructions:
+To run the program.
+Run javac spellcheck.java
+run java spellcheck
+
+To check the program with the 1000 most occurring words in the english
+language, all randomly "messed up"
+run javac generateWords.java
+run java generateWords
+
+
 Worst case run time analysis:
 Since I am using a prefix tree, the search time is linear dependant on the
 length of the word. The worst case for failure is evaluated below.
@@ -49,5 +60,4 @@ Exit method.
 
 In this situation, it would be 5 checks before the program realizes that a
 word is not possible with the given combination of vowels.
-
 
